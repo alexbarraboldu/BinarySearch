@@ -95,6 +95,9 @@ int main()
 	std::cout << "\nHead value: " << setArrayPivot(arr1, left, right, searchInt).head;
 	std::cout << "\tTail value: " << setArrayPivot(arr1, left, right, searchInt).tail << std::endl;
 
-	std::cout << "\nDid it find it?\n" << binarySearch(arr1, left, right ,searchInt);
+	std::cout << "\nDid it find it?\n" << binarySearch(arr1, left, right ,searchInt) << std::endl;
 
+	std::cin.ignore();
+	std::cin.get();
+	return 0;
 }
