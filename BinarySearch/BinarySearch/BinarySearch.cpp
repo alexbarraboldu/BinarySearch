@@ -7,11 +7,25 @@ int searchInt;
 
 typedef std::array<int, length> int_array;
 
+//	DECLARE ARRAY
+int_array arr1;
+
 struct pivot
 {
 	int head, tail, size;
 };
 pivot left, right;
+
+int_array fillArray(int_array _array)
+{
+	short int ran;
+	for (size_t i = 0; i < _array.size(); i++)
+	{
+		ran = rand() % 10000;
+		_array[i] = ran;
+	}
+	return _array;
+};
 
 pivot setArrayPivot(int_array _arr, pivot &_left, pivot &_right,int _t)
 {
@@ -58,29 +72,40 @@ bool binarySearch(int_array _arr, pivot& _left, pivot& _right, int _t)
 {
 	//	SET FIRST PIVOT ZONE
 	pivot _pivot = setArrayPivot(_arr, _left, _right, _t);
-	//	SET SECOND PIVOT ZONE
-	 _pivot = setArrayPivot(_arr, _pivot, _t);
+	std::cout << "\nFirst round - Pivot array values in index";
+	std::cout << "\nHead value: " << _pivot.head << "\t\tTail value: " << _pivot.tail;
+	std::cout << "\tSize value: " << _pivot.size;
+	std::cout << "\nHead value in array: " << _arr[_pivot.head] << "\tTail value in array: " << _arr[_pivot.tail] << std::endl;
+	//	SET OTHER PIVOT ZONE
+	if (_arr[_pivot.head] == _t || _arr[_pivot.tail] == _t) { std::cout << "\nNum. iterations: " << 0 << '\n'; return 1; };
 
-	 std::cout << "\nSecond round - Pivot array values in index" << std::endl;
-	 std::cout << "Head value: " <<_pivot.head << "\tTail value: " << _pivot.tail << std::endl;
+	int it = 0;
+	for (size_t i = 0; i < _pivot.size; i++)
+	{
+		it++;
+		_pivot = setArrayPivot(_arr, _pivot, _t);
+		std::cout << "\n" << it + 1 << " round - Pivot array values in index" << std::endl;
+		std::cout << "Head value: " << _pivot.head << "\t\tTail value: " << _pivot.tail;
+		std::cout << "\tSize value: " << _pivot.size << std::endl;
+		std::cout << "Head value in array: " << _arr[_pivot.head] << "\tTail value in array: " << _arr[_pivot.tail] << std::endl;
+		if (_arr[_pivot.head] == _t || _arr[_pivot.tail] == _t) { std::cout << "\nNum. iterations: " << 0 << '\n'; return 1; };
+		if (_pivot.size <= i + 1 && _pivot.size != 1) { i = 0; };
+	}
 
-	 int it = 0;
+	it = 0;
 	//	ITERATE TO FIND THE NUMBER
 	for (int i = _pivot.head; i < _pivot.tail + 1; i++)
 	{
 		it++;
-		if (_arr[i] > _t || _arr[i] < _t) { continue; }
-		else { std::cout << "\nNum. iterations: " << it << '\n'; return 1; };
+		if (_arr[i] == _t) { std::cout << "\nNum. iterations: " << it << '\n'; return 1; }
 	}
 	return 0;
 };
 
 int main()
 {
-	//	DECLARE ARRAY
-	int_array arr1;
 	//	FILL ARRAY
-	arr1 = { 0,1,2,3,46,59,60,73,88,91,123,134,145,168,178 };
+	arr1 = fillArray(arr1);
 	//	PRINT THINGS
 	std::cout << "Array values:";
 	for(int i = 0; i < length; i++) {

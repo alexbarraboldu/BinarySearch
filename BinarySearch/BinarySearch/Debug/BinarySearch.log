@@ -1,2 +1,4 @@
 ﻿  BinarySearch.cpp
-  BinarySearch.vcxproj -> C:\Users\alexb\source\repos\BinarySearch\Debug\BinarySearch.exe
+C:\Users\alexb\source\repos\BinarySearch\BinarySearch\BinarySearch.cpp(80,23): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\alexb\source\repos\BinarySearch\BinarySearch\BinarySearch.cpp(89,19): warning C4018: '<=': no coinciden signed/unsigned
+C:\Users\alexb\source\repos\BinarySearch\BinarySearch\BinarySearch.cpp(105): error C4700: se utilizó la variable local 'arr1' sin inicializar
